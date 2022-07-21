@@ -1,0 +1,72 @@
+.page-body-wrapper {
+    padding-top: 70px
+}
+
+.content-wrapper {
+    height: calc(100vh - 70px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgb(252, 249, 249);
+    border-radius: 1px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(204, 201, 201);
+    border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #9e9e9e;
+}
+
+img#book_cover {
+    border: 1px solid #ebedf2;
+    height: 400px;
+    width: 300px;
+    border-radius: 1rem;
+}
+
+.book_cover {
+    border: 1px solid #ebedf2;
+    height: 400px;
+    width: 300px;
+    border-radius: 1rem;
+}
+
+.table td img.rectangle {
+  width: 48px;
+  height: 62px;
+  border-radius: .1rem;
+}
+
+.show {
+    display: block !important;
+}
+
+.tag-search-result, .genre-search-result {
+    border: 1px solid #ebedf2;
+    padding: 0.94rem 1.375rem;
+    border-radius: 2px;
+    display: none;
+}
+textarea.form-control {
+    height: 500px !important;
+    font-size: 1.2rem;
+}
+.admin-header.fixed-top {
+    box-shadow: rgb(0 0 0 / 30%) 0px 0px 10px;
+}
+.sidebar li.nav-item {
+    border-bottom: 1px solid #eee9ef;
+}
