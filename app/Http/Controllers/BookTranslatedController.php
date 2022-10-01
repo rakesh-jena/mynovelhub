@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\BookGenre;
+use App\Models\BookTag;
 use App\Models\BookTranslated;
 use App\Models\ChapterTranslation;
 use App\Models\Genre;
 use App\Models\Tag;
-use App\Models\BookGenre;
-use App\Models\BookTag;
-use Image;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Image;
 
 class BookTranslatedController extends Controller
 {
@@ -22,7 +22,6 @@ class BookTranslatedController extends Controller
     public function index()
     {
         $books = BookTranslated::orderBy('novel', 'asc')->get();
-        
 
         return view('layouts.books_listing', compact('books'));
     }
@@ -53,25 +52,25 @@ class BookTranslatedController extends Controller
         ]);
 
         $slug = Str::slug($request->input('novel'), "-");
-        
-        $tempUrl = 'images/temp/'.$request->cover;
+
+        $tempUrl = 'images/temp/' . $request->cover;
         $image = Image::make($tempUrl);
-        $input['name'] = time().'.jpg';
-     
+        $input['name'] = time() . '.jpg';
+
         $destinationPath = 'images/book-cover/150';
         $img = Image::make($tempUrl);
         $img->resize(150, 200, function ($constraint) {
             $constraint->aspectRatio();
-        })->save($destinationPath.'/'.$input['name']);
+        })->save($destinationPath . '/' . $input['name']);
 
         $destinationPath = 'images/book-cover/48';
         $img = Image::make($tempUrl);
         $img->resize(48, 64, function ($constraint) {
             $constraint->aspectRatio();
-        })->save($destinationPath.'/'.$input['name']);
-   
+        })->save($destinationPath . '/' . $input['name']);
+
         $destinationPath = 'images/book-cover/300';
-        $image->save($destinationPath.'/'.$input['name']);
+        $image->save($destinationPath . '/' . $input['name']);
 
         $book = new BookTranslated();
         $book->novel = $request->input('novel');
@@ -80,12 +79,13 @@ class BookTranslatedController extends Controller
         $book->abbreviation = $request->input('abbreviation');
         $book->lead = $request->input('lead');
         $book->status = $request->input('status');
+        $book->released = $input['released'];
         $book->cover = $input['name'];
         $book->author = $request->input('author');
 
         $book->save();
 
-        return redirect('book_translated/'.$book['id'])
+        return redirect('book_translated/' . $book['id'])
             ->with('success', 'Book created successfully.');
         //return view('layouts.book_view');
     }
@@ -102,31 +102,27 @@ class BookTranslatedController extends Controller
         $chapters = ChapterTranslation::where('book_id', $id)->orderBy('chapter_no', 'asc')->get();
         $genre_id = BookGenre::where('book_id', $id)->where('book_type', 'translation')->get();
         $tag_id = BookTag::where('book_id', $id)->where('book_type', 'translation')->get();
-        
+
         $g_list = [];
-        if($genre_id)
-        {            
-            foreach($genre_id as $g)
-            {
+        if ($genre_id) {
+            foreach ($genre_id as $g) {
                 $genre = Genre::where('id', $g->genre_id)->first();
                 $g_list[] = [
                     'id' => $genre->id,
                     'genre' => $genre->genre,
-                    'book_genre_id' => $g->id
+                    'book_genre_id' => $g->id,
                 ];
             }
         }
-        
+
         $t_list = [];
-        if($tag_id)
-        {            
-            foreach($tag_id as $t)
-            {
+        if ($tag_id) {
+            foreach ($tag_id as $t) {
                 $tag = Tag::where('id', $t->tag_id)->first();
                 $t_list[] = [
                     'id' => $tag->id,
                     'tag' => $tag->tag,
-                    'book_tag_id' => $t->id
+                    'book_tag_id' => $t->id,
                 ];
             }
         }
@@ -165,45 +161,45 @@ class BookTranslatedController extends Controller
 
         $book = BookTranslated::where('id', $id)->first();
 
-        if($book->cover != $request->cover)
-        {
-            $tempUrl = 'images/temp/'.$request->cover;
+        if ($book->cover != $request->cover) {
+            $tempUrl = 'images/temp/' . $request->cover;
             $image = Image::make($tempUrl);
-            $input['name'] = time().'.jpg';
-        
-            $destinationPath ='images/book-cover/150';
+            $input['name'] = time() . '.jpg';
+
+            $destinationPath = 'images/book-cover/150';
             $img = Image::make($tempUrl);
             $img->resize(150, 200, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save($destinationPath.'/'.$input['name']);
+            })->save($destinationPath . '/' . $input['name']);
 
             $destinationPath = 'images/book-cover/48';
             $img = Image::make($tempUrl);
             $img->resize(48, 64, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save($destinationPath.'/'.$input['name']);
-    
+            })->save($destinationPath . '/' . $input['name']);
+
             $destinationPath = 'images/book-cover/300';
-            $image->save($destinationPath.'/'.$input['name']);
+            $image->save($destinationPath . '/' . $input['name']);
         } else {
             $input['name'] = $book->cover;
         }
 
         $slug = Str::slug($request->input('novel'), "-");
-        
-        $update_book = BookTranslated::where('id',$id)->first()->update([
+
+        $update_book = BookTranslated::where('id', $id)->first()->update([
             'novel' => $request['novel'],
             'slug' => $slug,
             'description' => $request['description'],
             'abbreviation' => $request['abbreviation'],
             'lead' => $request['lead'],
             'status' => $request['status'],
+            'released' => $request['released'],
             'cover' => $input['name'],
             'author' => $request['author'],
-            'book_type' => $request['book_type']
+            'book_type' => $request['book_type'],
         ]);
 
-        return redirect('book_translated/'.$book->id)
+        return redirect('book_translated/' . $book->id)
             ->with('success', 'Book updated successfully.');
     }
 
@@ -219,6 +215,6 @@ class BookTranslatedController extends Controller
         $book->delete();
 
         return redirect('book_translated')
-        ->with('success', 'Book deleted successfully.');
+            ->with('success', 'Book deleted successfully.');
     }
 }

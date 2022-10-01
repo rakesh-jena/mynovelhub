@@ -33,7 +33,7 @@
 
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Our Social Networks</h4>
-                    <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+                    <p></p>
                     <div class="social-links mt-3">
                         <a href="#" class="twitter"><i class="mdi mdi-twitter"></i></a>
                         <a href="#" class="facebook"><i class="mdi mdi-facebook"></i></a>

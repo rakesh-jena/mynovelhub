@@ -28,6 +28,12 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="text-uppercase">Year of Release</label>
+                                <input type="number" name="released" class="form-control form-control-sm"
+                                    placeholder="Year" aria-label="Released">
+                            </div>
+
+                            <div class="form-group">
                                 <label class="text-uppercase">Main lead</label>
                                 <div class="form-check">
                                     <label class="form-check-label">

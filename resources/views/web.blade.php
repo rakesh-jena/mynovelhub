@@ -26,8 +26,6 @@
     <link href="{{ URL::asset('css/owl.theme.default.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css"/>
     
-    <script data-ad-client="ca-pub-6766914808334879" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RJ4FHE7C5"></script>
     <script>

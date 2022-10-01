@@ -10,7 +10,8 @@ class BookTranslated extends Model
     use HasFactory;
 
     protected $table = 'books_translated';
-    protected $fillable = ['novel', 'slug', 'abbreviation', 'lead', 'author', 'description', 'status','featured', 'rating', 'chapters', 'page_view', 'cover', 'ch_updated'];
-
+    protected $fillable = ['novel', 'slug', 'abbreviation', 'lead',
+        'author', 'description', 'status', 'released', 'featured', 'rating', 'chapters',
+        'page_view', 'cover', 'ch_updated'];
 
 }

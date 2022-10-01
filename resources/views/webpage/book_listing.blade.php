@@ -80,12 +80,12 @@ $filter_order = session('filter_order', 'page_view');
 <section>
     <div class="container">
         @if(Request::is('genre*'))
-        <div class="box-sh mb-3">
+        <div class="box-sh mb-3 genre-desc">
             <h3>{{ $genre->genre }}</h3>
             <p>{{ $genre->description }}</p>
         </div>
         @elseif(Request::is('tag*'))
-        <div class="box-sh">
+        <div class="box-sh mb-3 tag-desc">
             <h3>{{ $tag->tag }}</h3>
             <p>{{ $tag->description }}</p>
         </div>
@@ -93,7 +93,7 @@ $filter_order = session('filter_order', 'page_view');
         <div class="row mb-4">
             @foreach ($books as $book)
             @php
-            $genre_id = App\Models\BookGenre::where('book_id', $book->id)->where('book_type', 'translation')->limit(4)->get();
+            $genre_id = App\Models\BookGenre::where('book_id', $book->id)->where('book_type', 'translation')->limit(10)->get();
             $g_list = [];
             foreach($genre_id as $g)
             {
@@ -101,7 +101,8 @@ $filter_order = session('filter_order', 'page_view');
                 $g_list[] = [
                     'id' => $genre->id,
                     'genre' => $genre->genre,
-                    'book_genre_id' => $g->id
+                    'book_genre_id' => $g->id,
+                    'slug' => $genre->slug
                 ];
             }
             @endphp
@@ -137,7 +138,9 @@ $filter_order = session('filter_order', 'page_view');
                             <div class="book-desc">{{ $book->description }}</div>
                             <div class="book-genre">
                                 @foreach ($g_list as $genre) 
-                                    <span class="badge badge-pill badge-info">{{ $genre['genre'] }}</span>
+                                    <a href="{{ url('genre') }}/{{$genre['id']}}/{{$genre['slug']}}" class="badge badge-pill badge-info">
+                                        {{ $genre['genre'] }}
+                                    </a>
                                 @endforeach
                             </div>                            
                         </div>

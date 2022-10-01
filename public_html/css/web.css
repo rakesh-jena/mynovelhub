@@ -468,6 +468,26 @@ p.block-desc {
     display: -webkit-box;
     -webkit-box-orient: vertical;
 }
+.history-item, .activity-item {
+    border-bottom: 2px solid #d4d4ce;
+}
+.history-item:last-child {
+    border-bottom: none;
+}
+.activity-item {
+    background-color: #f6f6f6;
+    padding: 20px;
+    border-radius: 10px;
+}
+.activity-content {
+    color: #919191;
+}
+.activity-details h6, .library-item h6 {
+    font-family: 'ubuntu-light';
+}
+.activity-book-cover img, .library-book-cover img {
+    border-radius: 5px;
+}
 @media (max-width: 1200px) {
     .book-search-result {
         right: 0;

@@ -155,6 +155,9 @@ Route::get('/privacy-policy', function () {
 Route::get('/about', function () {
     return view('webpage/about');
 });
+Route::get('/contact-us', function () {
+    return view('webpage/contact');
+});
 Route::get('/terms-of-service', function () {
     return view('webpage/toc');
 });

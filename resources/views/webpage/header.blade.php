@@ -22,162 +22,29 @@ if(Auth::check()){
                             <p class="mb-1 text-black">Genre</p>
                         </div>
                     </a>
-                    {{-- <div class="dropdown-menu navbar-dropdown" aria-labelledby="genreDropdown">
+                    <div class="dropdown-menu navbar-dropdown" style="width: max-content" aria-labelledby="genreDropdown">
+                        <div class="row">
                         @php
-                        $genres = \App\Models\Genre::all();
-                        
+                        $genres = \App\Models\Genre::orderBy('genre', 'asc')->get();
+                        $count = 0;
                         @endphp
                         @foreach($genres as $genre)
-                            <a class="dropdown-item text-capitalize" href="#">
+                        @php
+                        $count++;
+                        @endphp
+                        @if($count === 1)
+                        <div class="col">
+                            @endif
+                            <a class="dropdown-item text-capitalize" href="{{ url('genre') }}/{{$genre->id}}/{{$genre->slug}}">
                                 {{ $genre->genre }} </a>
                     @if(!next( $genres ))
                     <div class="dropdown-divider"></div>
                     @endif
+                    @if($count === 6)
+                    <?php $count = 0; ?>
+                        </div>
+                    @endif
                     @endforeach
-
-                    </div> --}}
-                    <div class="dropdown-menu navbar-dropdown" style="width: max-content" aria-labelledby="genreDropdown">
-                        <div class="row">
-                            <div class="col">
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Action </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Adult </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Adventure </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Comedy </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Drama </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Ecchi </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Fantasy </a>
-                            </div>
-                            <div class="col">
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Gender Bender </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Harem </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Historical </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Horror </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Josei </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Martial Arts </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Mature </a>
-                            </div>
-                            <div class="col">
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Mecha </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Mystery </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Psychological </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Romance </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    School Life </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Sci-fi </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Seinen </a>
-                            </div>
-                            <div class="col">
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Shoujo </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Shoujo Ai </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Shounen </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Shounen Ai </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Slice of Life </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Smut </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Sports </a>
-                            </div>
-                            <div class="col">
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Supernatural </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Tragedy </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Wuxia </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Xianxia </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Xuanhuan </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Yaoi </a>
-                                <div class="dropdown-divider"></div>
-        
-                                <a class="dropdown-item text-capitalize" href="#">
-                                    Yuri </a>
-                            </div>
                         </div>
                     </div>
                 </li>

@@ -27,7 +27,11 @@
                                 <input type="text" name="author" class="form-control form-control-sm"
                                     placeholder="Author" aria-label="Author" value="{{ $book[0]->novel }}">
                             </div>
-
+                            <div class="form-group">
+                                <label class="text-uppercase">Year of Release</label>
+                                <input type="number" name="released" class="form-control form-control-sm"
+                                    placeholder="Year" aria-label="Released" value="{{ $book[0]->released }}">
+                            </div>
                             <div class="form-group">
                                 <label class="text-uppercase">Main lead</label>
                                 <div class="form-check">

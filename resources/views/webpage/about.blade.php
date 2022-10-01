@@ -1,7 +1,7 @@
 @extends('web')
 @section('title', 'About | MyNovelHub')
-@section('meta_keywords', 'Policy', 'Privacy')
-@section('meta_description', 'Policy of our website.')
+@section('meta_keywords', 'About')
+@section('meta_description', 'Information about MyNovelHub.com')
 
 @section('content')
 <div></div>
