@@ -256,7 +256,7 @@ class AjaxController extends Controller
 
     public function search(Request $request)
     {
-        $result = BookTranslated::where('novel', 'LIKE', "%{$request->input('search')}%")->orderBy('novel', 'asc')->limit(10)->get();
+        $result = BookTranslated::where('novel', 'LIKE', "%{$request->input('search')}%")->orderBy('novel', 'asc')->limit(5)->get();
 
         return $result;
     }

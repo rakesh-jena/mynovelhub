@@ -15,7 +15,7 @@
 $filter_status = session('filter_status', '');
 $filter_order = session('filter_order', 'page_view');
 @endphp
-<section class="mb-4 mt-4">
+<section class="mb-sm-4 mt-sm-4 mb-2 mt-2 books-filter-section">
     <div class="container">
         <form class="filter_form box-sh text-center" action="novels" method="post">
             @csrf
@@ -77,7 +77,7 @@ $filter_order = session('filter_order', 'page_view');
 </section>
 
 <!-- Books -->
-<section>
+<section class="books-list-section">
     <div class="container">
         @if(Request::is('genre*'))
         <div class="box-sh mb-3 genre-desc">
@@ -93,7 +93,7 @@ $filter_order = session('filter_order', 'page_view');
         <div class="row mb-4">
             @foreach ($books as $book)
             @php
-            $genre_id = App\Models\BookGenre::where('book_id', $book->id)->where('book_type', 'translation')->limit(10)->get();
+            $genre_id = App\Models\BookGenre::where('book_id', $book->id)->where('book_type', 'translation')->limit(4)->get();
             $g_list = [];
             foreach($genre_id as $g)
             {
@@ -107,19 +107,19 @@ $filter_order = session('filter_order', 'page_view');
             }
             @endphp
             <div class="col-12 col-lg-6 mb-2">
-                <div class="book-item mb-2 box-sh">
+                <div class="book-item mb-sm-2 box-sh">
                     <div class="row">
-                        <div class="col-md-3 col-lg-4 col-xl-4 col-xxl-3 col-3">
+                        <div class="col-md-3 col-lg-4 col-xl-4 col-xxl-3d5 col-3">
                             <div class="book-cover">
                                 <a href="{{ url('novel/'.$book->slug.'/'.$book->id) }}">
-                                    <img alt="{{ $book->novel }}" src="{{ URL::asset('images/book-cover/150/'.$book->cover) }}">
+                                    <img class="rounded" alt="{{ $book->novel }}" src="{{ URL::asset('images/book-cover/150/'.$book->cover) }}">
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-9 col-lg-8 col-xl-8 col-xxl-9 col-9">
+                        <div class="col-md-9 col-lg-8 col-xl-8 col-xxl-8d5 col-9">
                             <div class="book-title">
                                 <a href="{{ url('novel/'.$book->slug.'/'.$book->id) }}">
-                                    <h4 class="text-uppercase">{{ $book->novel }}</h4>
+                                    <h4 class="text-capitalise">{{ $book->novel }}</h4>
                                 </a>
                             </div>
                             <div class="review-star">
@@ -136,7 +136,7 @@ $filter_order = session('filter_order', 'page_view');
                                 </ul>
                             </div>
                             <div class="book-desc">{{ $book->description }}</div>
-                            <div class="book-genre">
+                            <div class="book-genre mt-2 d-none d-sm-block">
                                 @foreach ($g_list as $genre) 
                                     <a href="{{ url('genre') }}/{{$genre['id']}}/{{$genre['slug']}}" class="badge badge-pill badge-info">
                                         {{ $genre['genre'] }}

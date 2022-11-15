@@ -60,7 +60,7 @@ img#book_cover {
     border-radius: 2px;
     display: none;
 }
-textarea.form-control {
+body.admin-dashboard textarea.form-control {
     height: 500px !important;
     font-size: 1.2rem;
 }

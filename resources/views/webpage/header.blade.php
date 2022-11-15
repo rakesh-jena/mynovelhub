@@ -5,7 +5,7 @@ if(Auth::check()){
 }    
 @endphp
 <div class="admin-header">
-    <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 d-flex flex-row">
+    <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 d-flex flex-row justify-content-center">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a class="navbar-brand brand-logo" href="{{ url('') }}">
                 <img src="{{ URL::asset('images/logo.png') }}" alt="logo"></a>
@@ -13,8 +13,8 @@ if(Auth::check()){
                 <img src="{{ URL::asset('images/logo-mini.png') }}" alt="logo"></a>
         </div>
 
-        <div class="navbar-menu-wrapper d-flex align-items-stretch">
-            <ul class="navbar-nav navbar-nav-left">
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-center">
+            <ul class="navbar-nav navbar-nav-left d-none d-md-flex">
                 <li class="nav-item nav-genre dropdown">
                     <a class="nav-link dropdown-toggle" id="genreDropdown" href="#" data-toggle="dropdown"
                         aria-expanded="false">
@@ -23,28 +23,29 @@ if(Auth::check()){
                         </div>
                     </a>
                     <div class="dropdown-menu navbar-dropdown" style="width: max-content" aria-labelledby="genreDropdown">
-                        <div class="row">
-                        @php
-                        $genres = \App\Models\Genre::orderBy('genre', 'asc')->get();
-                        $count = 0;
-                        @endphp
-                        @foreach($genres as $genre)
-                        @php
-                        $count++;
-                        @endphp
-                        @if($count === 1)
-                        <div class="col">
+                        <div class="row m-md-0">
+                            @php
+                            $genres = \App\Models\Genre::orderBy('genre', 'asc')->get();
+                            $count = 0;
+                            @endphp
+                            @foreach($genres as $genre)
+                            @php
+                            $count++;
+                            @endphp
+                            @if($count === 1)
+                            <div class="col p-md-0">
                             @endif
-                            <a class="dropdown-item text-capitalize" href="{{ url('genre') }}/{{$genre->id}}/{{$genre->slug}}">
-                                {{ $genre->genre }} </a>
-                    @if(!next( $genres ))
-                    <div class="dropdown-divider"></div>
-                    @endif
-                    @if($count === 6)
-                    <?php $count = 0; ?>
-                        </div>
-                    @endif
-                    @endforeach
+                                <a class="dropdown-item text-capitalize" href="{{ url('genre') }}/{{$genre->id}}/{{$genre->slug}}">
+                                    {{ $genre->genre }} 
+                                </a>
+                                @if(!next( $genres ))
+                                <div class="dropdown-divider"></div>
+                                @endif
+                            @if($count === 6)
+                            <?php $count = 0; ?>
+                            </div>
+                            @endif
+                        @endforeach
                         </div>
                     </div>
                 </li>
@@ -71,13 +72,13 @@ if(Auth::check()){
                 </li>
             </ul>
 
-            <div class="search-field d-none d-md-block">
+            <div class="search-field">
                 <form class="d-flex align-items-center h-100" action="#">
                     <div class="input-group">
                         <div class="input-group-prepend bg-transparent">
                             <i class="input-group-text border-0 mdi mdi-magnify"></i>
                         </div>
-                        <input type="text" class="form-control bg-transparent border-0" id="search"
+                        <input type="text" class="form-control bg-transparent border-0" id="search" data-u="{{ url('/') }}"
                             data-image="{{ URL::asset('images/book-cover/48/') }}" data-url="{{ url('search') }}"
                             placeholder="Search projects">
                     </div>
@@ -108,25 +109,48 @@ if(Auth::check()){
                         <a class="dropdown-item" href="{{ url('reading-history') }}">
                             <i class="mdi mdi-history mr-2 text-success"></i> History </a>
                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ url('activity') }}">
+                            <i class="mdi mdi-history mr-2 text-success"></i> Activity </a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ url('user_logout') }}">
                             <i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
                     </div>
                 </li>
                 @else
-                <li class="nav-item d-md-block mr-2">
+                <li class="nav-item d-none d-md-block mr-2">
                     <button class="btn btn-rounded btn-gradient-primary btn-sm font-weight-medium" data-toggle="modal"
                         data-target="#login_modal">
                         LOG IN
+                    </button>                    
+                </li>
+                <li class="nav-item d-block d-sm-none">
+                    <button class="btn btn-rounded btn-icon" data-toggle="modal" data-target="#login_modal">
+                        <i class="mdi mdi-account-circle"></i>
                     </button>
                 </li>
-                <li class="nav-item d-none d-md-block">
+                <li class="nav-item d-none">
                     <button class="btn btn-rounded btn-gradient-primary btn-sm font-weight-medium" data-toggle="modal"
                         data-target="#register_modal">
                         SIGN UP
                     </button>
                 </li>
                 @endif
-
+                <li class="nav-item d-block d-sm-none">
+                    <button class="btn btn-rounded btn-icon m-menu-btn">
+                        <i class="mdi mdi-menu"></i>
+                    </button>
+                    <div class="p-absolute d-none mobile-menu">
+                        <a class="m-menu-item" href="{{ url('novels') }}">All Novels</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="m-menu-item" href="{{ url('genre') }}">
+                            All Genre 
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="m-menu-item" href="{{ url('tags') }}">
+                            All Tags 
+                        </a>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>

@@ -35,22 +35,22 @@
 </style>
 <div class="chapter-container container box-sh {{ $dark_mode == 'active' ? 'dark' : '' }}">
     <div class="mb-4">
-        <h3 class="text-center text-uppercase" style="font-family: cursive">
+        <h3 class="text-center text-capitalise" style="font-family: cursive">
             <a href="{{ url('novel/'.$book->slug.'/'.$book->id) }}">{{ $book->novel }}</a>
         </h3>
     </div>
     <div class="mb-2 d-flex">
         @if($previous)        
-        <a href="{{ url($book->slug.'/'.$previous->id.'/'.$previous->slug) }}" class="float-left btn-floating btn btn-gradient-primary mr-auto">Previous</a>
+        <a href="{{ url($book->slug.'/'.$previous->id.'/'.$previous->slug) }}" class="float-left btn-rounded btn-floating btn btn-gradient-primary mr-auto">Previous</a>
         @else
-        <a href="#" class="float-left btn btn-gradient-light btn-floating disabled mr-auto">Previous</a>
+        <a href="#" class="float-left btn-rounded btn btn-gradient-light btn-floating disabled mr-auto">Previous</a>
         @endif
         <h4 class="text-center text-capitalize m-auto" style="font-family: cursive"><i class="">ch.{{ $chapter->chapter_no }}&ensp;</i>{{ $chapter->ch_name }}
         </h4>
         @if($next)
-        <a href="{{ url($book->slug.'/'.$next->id.'/'.$next->slug) }}" class="float-right btn-floating btn btn-gradient-primary ml-auto">Next</a>
+        <a href="{{ url($book->slug.'/'.$next->id.'/'.$next->slug) }}" class="float-right btn-rounded btn-floating btn btn-gradient-primary ml-auto">Next</a>
         @else
-        <a href="#" class="float-right btn btn-gradient-light btn-floating disabled mr-auto">Next</a>
+        <a href="#" class="float-right btn btn-gradient-light btn-rounded btn-floating disabled mr-auto">Next</a>
         @endif
     </div>
     <div class="ch_content">
@@ -58,20 +58,21 @@
     </div>
     <div class="mb-2 d-flex">
         @if($previous)        
-        <a href="{{ url($book->slug.'/'.$previous->id.'/'.$previous->slug) }}" class="float-left btn btn-gradient-primary btn-floating mr-auto">Previous</a>
+        <a href="{{ url($book->slug.'/'.$previous->id.'/'.$previous->slug) }}" class="float-left btn-rounded btn btn-gradient-primary btn-floating mr-auto">Previous</a>
         @else
-        <a href="#" class="float-left btn btn-gradient-light btn-floating disabled mr-auto">Previous</a>
+        <a href="#" class="float-left btn btn-gradient-light btn-rounded btn-floating disabled mr-auto">Previous</a>
         @endif
-        <h4 class="text-center text-capitalize m-auto" style="font-family: 'Mulish'">END
+        <h4 class="text-center text-capitalize m-auto" style="font-family: 'Mulish'">
+            END
         </h4>
         @if($next)
-        <a href="{{ url($book->slug.'/'.$next->id.'/'.$next->slug) }}" class="float-right btn btn-gradient-primary btn-floating ml-auto">Next</a>
+        <a href="{{ url($book->slug.'/'.$next->id.'/'.$next->slug) }}" class="float-right btn-rounded btn btn-gradient-primary btn-floating ml-auto">Next</a>
         @else
-        <a href="#" class="float-right btn btn-gradient-light btn-floating disabled mr-auto">Next</a>
+        <a href="#" class="float-right btn btn-gradient-light btn-rounded btn-floating disabled mr-auto">Next</a>
         @endif
     </div>
 </div>
-<div class="chapter-options fixed-left">
+<div class="chapter-options mr-sm-1 fixed-left">
     <button type="button" class="btn btn-gradient-primary btn-rounded btn-icon d-xm-inline-block d-block m-1 btn-ch-op" data-div="chapter-list-container">
         <i class="mdi mdi-view-list"></i>
     </button>
@@ -82,9 +83,9 @@
         <i class="mdi mdi-comment-text"></i>
     </button>
 </div>
-<div class="chapter-option-container fixed-left position-fixed d-none">
+<div class="chapter-option-container mr-sm-2 fixed-left position-fixed d-none">
     <div class="close-btn d-block ml-auto float-right p-1">
-        <i class="mdi mdi-close-circle"></i>
+        <i class="mdi mdi-close"></i>
     </div>
     <div class="chapter-setting-container ch-c d-none">
         <div class="chapter-option-header d-block">
@@ -127,7 +128,7 @@
             
             <div class="ch-item">
                 <a class="d-block ch_an" href="{{ url($book->slug.'/'.$ch->id.'/'.$ch->slug) }}">
-                    <i class="ch_num">{{ $ch->chapter_no }}</i>
+                    <i class="ch_num">{{ $ch->chapter_no }}.</i>
                     <div class="d-block overflow-hidden">
                         <strong class="ch_name">{{ $ch->ch_name }}</strong>
                         <small class="ch_time">{{ Carbon\Carbon::parse($ch->updated_at)->diffForHumans() }}</small>

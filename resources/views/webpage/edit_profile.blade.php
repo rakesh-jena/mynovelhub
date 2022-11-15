@@ -9,9 +9,8 @@
     }
 </style>
 @section('content')
-<div class="profile-wrapper container-fluid mt-5 mb-5">
-    @include('webpage.profile_sidebar')
-    <div class="main-panel profile-panel">
+<div class="profile-wrapper container mt-md-5 mb-md-5 mt-2 mb-2">
+    <div class="profile-panel">
         <div class="profile-content-wrapper">
             <div class="card">
                 <div class="card-body">

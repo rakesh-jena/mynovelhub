@@ -9,7 +9,7 @@
     <div class="container mt-5">
         <div class="row mb-4">
             @foreach ($genres as $g)
-            <div class="col-6 col-lg-4 mb-2">
+            <div class="col-12 col-lg-4 col-sm-6 mb-2">
                 <div class="genre-item mb-2 box-sh">
                     <a href="{{ url('genre') }}/{{ $g->id }}/{{ $g->slug }}">
                         <div class="heading">
