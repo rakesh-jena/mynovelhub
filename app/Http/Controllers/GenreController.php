@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Genre;
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class GenreController extends Controller
@@ -18,7 +17,7 @@ class GenreController extends Controller
     {
         $genre = Genre::orderBy('genre', 'ASC')->get();
 
-        return response()->json($genre);
+        return view('layouts.genre_listing', compact('genre'));
     }
 
     /**
@@ -42,12 +41,12 @@ class GenreController extends Controller
     {
         $request->validate([
             'genre' => 'required',
-            'description' => 'required'
+            'description' => 'required',
         ]);
-        
+
         $slug = Str::slug($request->genre, "-");
         $request->request->add(['slug', $slug]);
-        
+
         Genre::create($request->all());
 
         return redirect()->route('others')
@@ -89,13 +88,13 @@ class GenreController extends Controller
     {
         $request->validate([
             'genre' => 'required',
-            'description' => 'required'
+            'description' => 'required',
         ]);
 
         $genre = Genre::where('id', $id);
         $genre->update([
             'genre' => $request['genre'],
-            'description' => $request['description']
+            'description' => $request['description'],
         ]);
 
         return redirect()->route('others')

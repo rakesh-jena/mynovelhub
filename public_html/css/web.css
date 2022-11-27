@@ -321,6 +321,7 @@ i.ch_num {
     padding: 5px 5px 5px 0;
 }
 .story-stat {
+    width: -moz-fit-content;
     width: fit-content;
     border-radius: 25px;
     background: #ac42e6;
@@ -658,6 +659,7 @@ p.block-desc {
     }
     .books-panel-info-inner a.btn {
         display: block;
+        width: -moz-fit-content;
         width: fit-content;
         margin: auto;
     }
@@ -675,6 +677,7 @@ p.block-desc {
     }    
     .story-actions ul {
         margin: auto;
+        width: -moz-fit-content;
         width: fit-content;
     }
     .book-search-result {

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Tag;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class TagController extends Controller
@@ -15,7 +15,9 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::orderBy('tag', 'ASC')->get();
+
+        return view('layouts.tag_listing', compact('tags'));
     }
 
     /**
@@ -37,12 +39,12 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tag' => 'required'
+            'tag' => 'required',
         ]);
-        
+
         $slug = Str::slug($request->tag, "-");
         $request->request->add(['slug', $slug]);
-        
+
         Tag::create($request->all());
 
         return redirect()->route('others')
@@ -87,7 +89,7 @@ class TagController extends Controller
         $tag = Tag::where('id', $id);
         $tag->update([
             'tag' => $request['tag'],
-            'description' => $request['description']
+            'description' => $request['description'],
         ]);
 
         return redirect()->route('others')

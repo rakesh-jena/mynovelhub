@@ -2,25 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Genre;
-use App\Models\Tag;
+use Illuminate\Http\Request;
 
 class OthersController extends Controller
 {
-    public function index(){
-        $genre = Genre::orderBy('genre', 'ASC')->get();
-        $tags = Tag::orderBy('tag', 'ASC')->get();
-
-        return view('layouts.others_listing', compact('genre', 'tags'));
+    public function index()
+    {
     }
 
-    public function addGenre(Request $request){
+    public function addGenre(Request $request)
+    {
         $request->validate([
             'genre' => 'required',
-            'description' => 'required'
+            'description' => 'required',
         ]);
-        
+
         $genre = new Genre();
         $genre->genre = $request->input('genre');
         $genre->description = $request->input('synopsis');

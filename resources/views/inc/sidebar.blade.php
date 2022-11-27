@@ -20,14 +20,14 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ URL('admin/points') }}">
-                    <span class="menu-title">Points</span>
+                <a class="nav-link" href="{{ URL('admin/genre') }}">
+                    <span class="menu-title">Genre</span>
                     <i class="mdi mdi-format-list-bulleted menu-icon"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ URL('admin/others') }}">
-                    <span class="menu-title">Others</span>
+                <a class="nav-link" href="{{ URL('admin/tag') }}">
+                    <span class="menu-title">Tags</span>
                     <i class="mdi mdi-format-list-bulleted menu-icon"></i>
                 </a>
             </li>

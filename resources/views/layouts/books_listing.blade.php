@@ -15,7 +15,6 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">ID</th>
                                 <th scope="col">Novel</th>
                                 <th scope="col">Chapters</th>
                                 <th scope="col">Status</th>
@@ -26,16 +25,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                                $count = 0;
-                            @endphp
+                            <?php $count = 0;?>
                             @foreach ($books as $book)
-                            @php
-                                $count++;
-                            @endphp
+                            <?php $count++;?>
                             <tr>
                                 <td>{{ $count }}</td>
-                                <td>{{ $book->id }}</td>
                                 <td class="py-1">
                                     <img class="rectangle mr-1" src="{{ URL::asset('images/book-cover/48/'.$book->cover) }}" alt="image">{{ substr($book->novel, 0, 20) }}...
                                 </td>
