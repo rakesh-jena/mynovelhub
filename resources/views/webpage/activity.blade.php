@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                   <a class="nav-link active text-capitalize" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="true">review</a>
                                 </li>
@@ -30,34 +30,37 @@
                                     @php
                                         $book = App\Models\BookTranslated::where('id', $review->book_id)->first();    
                                     @endphp
-                                    <div class="activity-item row">
-                                        <div class="activity-content">
+                                    <div class="activity-item mb-3">
+                                        <div class="activity-content mb-2">
                                             {{ $review->content }}
                                         </div>
-                                        <div class="activity-book-cover col-2">
-                                            <a href="{{ url('novel/'.$book->slug.'/'.$book->id) }}">
-                                                <img alt="{{ $book->novel }}" src="{{ URL::asset('images/book-cover/150/'.$book->cover) }}">
-                                            </a>
-                                        </div>
-                                        <div class="activity-details col-10">
-                                            <h4 class="book-title">
+                                        <div class="row">
+                                            
+                                            <div class="activity-book-cover col-1">
                                                 <a href="{{ url('novel/'.$book->slug.'/'.$book->id) }}">
-                                                    {{ $book->novel }}
+                                                    <img alt="{{ $book->novel }}" src="{{ URL::asset('images/book-cover/48/'.$book->cover) }}">
                                                 </a>
-                                            </h4>
-                                            <div class="book-star">
-                                                <ul class="stars-list" style="font-size: 0.9rem">
-                                                    @php
-                                                    for($i = 0; $i<$review->rating; $i++)
-                                                    echo("<li class='star-item active'><i class='mdi mdi-star'></i></li>");
-                                                    if($review->rating<5){
-                                                        $r = 5 - $review->rating;
-                                                        for($i = 0; $i<$r; $i++)
-                                                        echo("<li class='star-item inactive'><i class='mdi mdi-star'></i></li>");
-                                                    }
-                                                    @endphp
-                                                </ul>
-                                            </div>                                      
+                                            </div>
+                                            <div class="activity-details col-11">
+                                                <h6 class="book-title">
+                                                    <a href="{{ url('novel/'.$book->slug.'/'.$book->id) }}">
+                                                        {{ $book->novel }}
+                                                    </a>
+                                                </h6>
+                                                <div class="book-star">
+                                                    <ul class="stars-list" style="font-size: 0.9rem">
+                                                        @php
+                                                        for($i = 0; $i<$review->rating; $i++)
+                                                        echo("<li class='star-item active'><i class='mdi mdi-star'></i></li>");
+                                                        if($review->rating<5){
+                                                            $r = 5 - $review->rating;
+                                                            for($i = 0; $i<$r; $i++)
+                                                            echo("<li class='star-item inactive'><i class='mdi mdi-star'></i></li>");
+                                                        }
+                                                        @endphp
+                                                    </ul>
+                                                </div>                                      
+                                            </div>
                                         </div>
                                     </div>
                                     @endforeach
@@ -80,40 +83,43 @@
                                             $book = App\Models\BookTranslated::where('id', $chapter->book_id)->first(); 
                                         }  
                                     @endphp
-                                    <div class="activity-item row">
+                                    <div class="activity-item mb-3">
                                         <div class="activity-content">
                                             {{ $reply->content }}
                                         </div>
-                                        <p class="replied-to">Replied to {{ $user_replied->name }}</p>
-                                        @if($reply->reply_type == 'user_comment')
-                                            <a class="activity-chapter" href="{{ url($book->slug.'/'.$chapter->id.'/'.$chapter->slug) }}">
-                                                {{ $chapter->ch_name }}
-                                            </a>
-                                        @endif
-                                        <div class="activity-book-cover col-2">
-                                            <a href="{{ url('novel/'.$book->slug.'/'.$book->id) }}">
-                                                <img alt="{{ $book->novel }}" src="{{ URL::asset('images/book-cover/150/'.$book->cover) }}">
-                                            </a>
-                                        </div>
-                                        <div class="activity-details col-10">
-                                            <h4 class="book-title">
-                                                <a href="{{ url('novel/'.$book->slug.'/'.$book->id) }}">
-                                                    {{ $book->novel }}
+                                        <div class="row">
+                                            
+                                            <p class="replied-to">Replied to {{ $user_replied->name }}</p>
+                                            @if($reply->reply_type == 'user_comment')
+                                                <a class="activity-chapter" href="{{ url($book->slug.'/'.$chapter->id.'/'.$chapter->slug) }}">
+                                                    {{ $chapter->ch_name }}
                                                 </a>
-                                            </h4>
-                                            <div class="book-star">
-                                                <ul class="stars-list" style="font-size: 0.9rem">
-                                                    @php
-                                                    for($i = 0; $i<$book->rating; $i++)
-                                                    echo("<li class='star-item active'><i class='mdi mdi-star'></i></li>");
-                                                    if($book->rating<5){
-                                                        $r = 5 - $book->rating;
-                                                        for($i = 0; $i<$r; $i++)
-                                                        echo("<li class='star-item inactive'><i class='mdi mdi-star'></i></li>");
-                                                    }
-                                                    @endphp
-                                                </ul>
-                                            </div>                                      
+                                            @endif
+                                            <div class="activity-book-cover col-2">
+                                                <a href="{{ url('novel/'.$book->slug.'/'.$book->id) }}">
+                                                    <img alt="{{ $book->novel }}" src="{{ URL::asset('images/book-cover/48/'.$book->cover) }}">
+                                                </a>
+                                            </div>
+                                            <div class="activity-details col-10">
+                                                <h6 class="book-title">
+                                                    <a href="{{ url('novel/'.$book->slug.'/'.$book->id) }}">
+                                                        {{ $book->novel }}
+                                                    </a>
+                                                </h6>
+                                                <div class="book-star">
+                                                    <ul class="stars-list" style="font-size: 0.9rem">
+                                                        @php
+                                                        for($i = 0; $i<$book->rating; $i++)
+                                                        echo("<li class='star-item active'><i class='mdi mdi-star'></i></li>");
+                                                        if($book->rating<5){
+                                                            $r = 5 - $book->rating;
+                                                            for($i = 0; $i<$r; $i++)
+                                                            echo("<li class='star-item inactive'><i class='mdi mdi-star'></i></li>");
+                                                        }
+                                                        @endphp
+                                                    </ul>
+                                                </div>                                      
+                                            </div>
                                         </div>
                                     </div>
                                     @endforeach
@@ -126,39 +132,42 @@
                                         $chapter = App\Models\ChapterTranslation::where('id', $comment->chapter_id)->select('id', 'slug', 'book_id', 'chapter_no', 'ch_name')->first();
                                         $book = App\Models\BookTranslated::where('id', $chapter->book_id)->first();    
                                     @endphp
-                                    <div class="activity-item row">
+                                    <div class="activity-item mb-3">
                                         <div class="activity-content">
                                             {{ $comment->content }}
                                         </div>
-                                        <a class="activity-chapter" href="{{ url($book->slug.'/'.$chapter->id.'/'.$chapter->slug) }}">
-                                            {{ $chapter->ch_name }}
-                                        </a>
-                                        <div class="activity-book-cover col-2">
-                                            <a href="{{ url('novel/'.$book->slug.'/'.$book->id) }}">
-                                                <img alt="{{ $book->novel }}" src="{{ URL::asset('images/book-cover/150/'.$book->cover) }}">
+                                        <div class="row">
+                                            
+                                            <a class="activity-chapter" href="{{ url($book->slug.'/'.$chapter->id.'/'.$chapter->slug) }}">
+                                                {{ $chapter->ch_name }}
                                             </a>
-                                        </div>
-                                        <div class="activity-details col-10">
-                                            <h4 class="book-title">
+                                            <div class="activity-book-cover col-2">
                                                 <a href="{{ url('novel/'.$book->slug.'/'.$book->id) }}">
-                                                    {{ $book->novel }}
+                                                    <img alt="{{ $book->novel }}" src="{{ URL::asset('images/book-cover/48/'.$book->cover) }}">
                                                 </a>
-                                            </h4>
-                                            <div class="book-star">
-                                                <ul class="stars-list" style="font-size: 0.9rem">
-                                                    @php
-                                                    for($i = 0; $i<$book->rating; $i++)
-                                                    echo("<li class='star-item active'><i class='mdi mdi-star'></i></li>");
-                                                    if($book->rating<5){
-                                                        $r = 5 - $book->rating;
-                                                        for($i = 0; $i<$r; $i++)
-                                                        echo("<li class='star-item inactive'><i class='mdi mdi-star'></i></li>");
-                                                    }
-                                                    @endphp
-                                                </ul>
-                                            </div>                                      
-                                        </div>
-                                    </div>    
+                                            </div>
+                                            <div class="activity-details col-10">
+                                                <h6 class="book-title">
+                                                    <a href="{{ url('novel/'.$book->slug.'/'.$book->id) }}">
+                                                        {{ $book->novel }}
+                                                    </a>
+                                                </h6>
+                                                <div class="book-star">
+                                                    <ul class="stars-list" style="font-size: 0.9rem">
+                                                        @php
+                                                        for($i = 0; $i<$book->rating; $i++)
+                                                        echo("<li class='star-item active'><i class='mdi mdi-star'></i></li>");
+                                                        if($book->rating<5){
+                                                            $r = 5 - $book->rating;
+                                                            for($i = 0; $i<$r; $i++)
+                                                            echo("<li class='star-item inactive'><i class='mdi mdi-star'></i></li>");
+                                                        }
+                                                        @endphp
+                                                    </ul>
+                                                </div>                                      
+                                            </div>
+                                        </div> 
+                                    </div>   
                                     @endforeach
                                     @endif
                                 </div>

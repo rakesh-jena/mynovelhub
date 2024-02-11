@@ -80,12 +80,12 @@ $filter_order = session('filter_order', 'page_view');
 <section>
     <div class="container">
         @if(Request::is('genre*'))
-        <div class="box-sh mb-3">
+        <div class="box-sh mb-3 genre-desc">
             <h3>{{ $genre->genre }}</h3>
             <p>{{ $genre->description }}</p>
         </div>
         @elseif(Request::is('tag*'))
-        <div class="box-sh">
+        <div class="box-sh mb-3 tag-desc">
             <h3>{{ $tag->tag }}</h3>
             <p>{{ $tag->description }}</p>
         </div>

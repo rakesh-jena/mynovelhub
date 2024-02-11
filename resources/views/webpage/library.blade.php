@@ -24,16 +24,16 @@
                                 }
                                 @endphp
                                 <div class="library-item col-2">
-                                    <div class="library-book-cover">
+                                    <div class="library-book-cover mb-2">
                                         <a href="{{ url($book->slug.'/'.$chapter->id.'/'.$chapter->slug) }}">
                                             <img alt="{{ $book->novel }}" src="{{ URL::asset('images/book-cover/150/'.$book->cover) }}">
                                         </a>
                                     </div>
-                                    <h4 class="book-title">
+                                    <h6 class="book-title">
                                         <a href="{{ url('novel/'.$book->slug.'/'.$book->id) }}">
                                             {{ $book->novel }}
                                         </a>
-                                    </h4>
+                                    </h6>
                                     <p class="book-progress">
                                         @php
                                         if($history)
