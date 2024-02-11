@@ -5,7 +5,7 @@
 
 @section('content')
 <!-- Book Header -->
-<section class="book-single mt-4 mb-4">
+<section class="book-single mt-sm-4 mb-sm-4">
     <div class="info-container container box-sh">
         <div class="row">
             <div class="col-xl-4 col-xxl-3 col-lg-4 col-sm-6">
@@ -14,8 +14,8 @@
                 </div>
             </div>
             <div class="col-xl-8 col-xxl-9 col-lg-8 col-sm-6">
-                <h3 class="book-single-title">{{ $book->novel }}</h3>
-                <div class="book-single-author">{{ $book->author }}</div>
+                <h1 class="book-single-title">{{ $book->novel }}</h1>
+                <div class="book-single-author font-italic">by {{ $book->author }}</div>
                 <div class="book-star">
                     <ul class="stars-list">
                         @php
@@ -70,20 +70,20 @@
                                 $chapter = App\Models\ChapterTranslation::where('id', $history->chapter_id)->select('id', 'slug')->first();   
                                 @endphp
                                 <li class="d-inline-block">
-                                    <a href="{{ url($book->slug.'/'.$chapter->id.'/'.$chapter->slug) }}" class="btn btn-gradient-primary btn-rounded">
+                                    <a href="{{ url($book->slug.'/'.$chapter->id.'/'.$chapter->slug) }}" class="btn btn-floating btn-gradient-primary btn-rounded">
                                         Continue Reading
                                     </a>
                                 </li>
                             @else
                             <li class="d-inline-block">
-                                <a href="{{ url($book->slug.'/'.$chapters[0]->id.'/'.$chapters[0]->slug) }}" class="btn btn-gradient-primary btn-rounded">
+                                <a href="{{ url($book->slug.'/'.$chapters[0]->id.'/'.$chapters[0]->slug) }}" class="btn btn-floating btn-gradient-primary btn-rounded">
                                     Read
                                 </a>
                             </li>
                             @endif
                         @else
                         <li class="d-inline-block">
-                            <a href="{{ url($book->slug.'/'.$chapters[0]->id.'/'.$chapters[0]->slug) }}" class="btn btn-gradient-primary btn-rounded">
+                            <a href="{{ url($book->slug.'/'.$chapters[0]->id.'/'.$chapters[0]->slug) }}" class="btn btn-floating btn-gradient-primary btn-rounded">
                                 Read
                             </a>
                         </li>
@@ -102,13 +102,13 @@
                         </li>
                         @else
                             <li class="d-inline-block">
-                                <a href="{{ url('library/add-book') }}?book_id={{ $book->id }}" class="add-library btn btn-gradient-primary btn-rounded">Add to Library</a>
+                                <a href="{{ url('library/add-book') }}?book_id={{ $book->id }}" class="btn-floating add-library btn btn-gradient-primary btn-rounded">Add to Library</a>
                             </li>
                         @endif
                         @endauth
                         @if(!Auth::check())
                         <li class="d-inline-block">
-                            <a href="{{ url('login') }}" class="add-library btn btn-gradient-primary btn-rounded">Add to Library</a>
+                            <a href="{{ url('login') }}" class="add-library btn-floating btn btn-gradient-primary btn-rounded">Add to Library</a>
                         </li>
                         @endif
                     </ul>
@@ -120,7 +120,7 @@
 </section>
 
 <!-- Book Description -->
-<section class="container box-sh mt-4 mb-4">
+<section class="container box-sh mt-sm-4 mb-sm-4">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <a class="nav-link active" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about"
@@ -156,7 +156,7 @@
                 @foreach ($chapters as $ch)
                 <div class="col-12 col-sm-6">
                     <a class="d-block ch_an" href="{{ url($book->slug.'/'.$ch->id.'/'.$ch->slug) }}">
-                        <i class="ch_num">{{ $ch->chapter_no }}</i>
+                        <i class="ch_num text-right">{{ $ch->chapter_no }}.</i>
                         <div class="d-block overflow-hidden">
                             <strong class="ch_name">{{ $ch->ch_name }}</strong>
                             <small class="ch_time">{{ Carbon\Carbon::parse($ch->updated_at)->diffForHumans() }}</small>
@@ -171,7 +171,7 @@
 <!-- You May Also Like -->
 
 <!-- Book Reviews -->
-<section class="container box-sh mt-4 mb-4">
+<section class="container box-sh mt-sm-4 mb-sm-4">
     <h4 class="">Reviews</h4>
     @if (Auth::check())
         
@@ -193,29 +193,31 @@
             $replies = App\Models\UserReply::where('reply_type', 'user_review')->where('replied_id', $review->id)->count();
         @endphp
         <div class="review-item">
-            <div class="review-user">
-                <div class="nav-profile-img d-inline-block">
-                    <img src="{{ URL::asset('images/user-avatar') }}/{{ $user_meta->avatar }}" alt="image">
-                    
+            <div class="review-user d-flex">
+                <div class="nav-profile-img d-inline-block mr-1">
+                    <img src="{{ URL::asset('images/user-avatar') }}/{{ $user_meta->avatar }}" alt="image">                    
                 </div>
                 <div class="nav-profile-text d-inline-block">
-                    <p class="mb-1 text-black">{{ $user->name }}</p>
+                    <p class="mb-0 text-black font-italic">{{ $user->name }}</p>
+                    <div class="review-star">
+                        <ul class="stars-list">
+                            @php
+                                for($i = 0; $i<$review->rating; $i++)
+                                echo("<li class='star-item active'><i class='mdi mdi-star'></i></li>");
+                                if($review->rating<5){
+                                    $r = 5 - $review->rating;
+                                    for($i = 0; $i<$r; $i++)
+                                    echo("<li class='star-item inactive'><i class='mdi mdi-star'></i></li>");
+                                }
+                            @endphp
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="review-star">
-                <ul class="stars-list">
-                    @php
-                        for($i = 0; $i<$review->rating; $i++)
-                        echo("<li class='star-item active'><i class='mdi mdi-star'></i></li>");
-                        if($review->rating<5){
-                            $r = 5 - $review->rating;
-                            for($i = 0; $i<$r; $i++)
-                            echo("<li class='star-item inactive'><i class='mdi mdi-star'></i></li>");
-                        }
-                    @endphp
-                </ul>
+            
+            <div class="review-content mb-1">
+                <p class="mb-0">{!! nl2br($review->content) !!}</p>
             </div>
-            <div class="review-content mb-2"><p>{!! nl2br($review->content) !!}</p></div>
             <div class="review-others clearfix mb-2">
                 <span class="float-left">
                     {{ Carbon\Carbon::parse($review->created_at)->diffForHumans() }}
@@ -249,6 +251,7 @@
                         <button class="btn btn-rounded btn-gradient-primary btn-sm font-weight-medium" data-toggle="modal" data-target="#edit_review_modal">
                             Edit Review
                         </button>
+                        @include('modals.edit_review')
                     @endif
                 </span>
             </div>
@@ -267,8 +270,7 @@
 
 @if (Auth::check())
     @include('modals.add_review')
-    @include('modals.add_reply')
-    @include('modals.edit_review')
+    @include('modals.add_reply')    
 @endif
 
 @include('modals.view_reply')

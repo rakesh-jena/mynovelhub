@@ -470,6 +470,7 @@
         var search = $('#search').val();
         var url = $('#search').data('url');
         var image = $('#search').data('image');
+        var origin   = $('#search').data('u');
         $.ajax({
             type: "POST",
             url: url,
@@ -480,9 +481,9 @@
                 {
                     $('.book-search-result').append(`
                         <div class="result-item mb-2">
-                            <a href="/novel/${item['slug']}/${item['id']}">
-                                <img src="${image}/${item['cover']}">
-                                <h6 class="d-inline-block">${item['novel']}</h6>
+                            <a href="${origin}/novel/${item['slug']}/${item['id']}" class="animation-dropdown d-flex align-items-center">
+                                <img class="rounded mr-1" src="${image}/${item['cover']}">
+                                <h6 class="mb-0">${item['novel']}</h6>
                             </a>
                         </div>
                     `);
@@ -543,5 +544,45 @@
         $(this).removeClass('btn-outline-primary').addClass('btn-gradient-primary').attr('disabled', 'disabled');
     });
 
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip();
+
+    if (isMobile) {
+        var didScroll;
+        var lastScrollTop = 0;
+        var delta = 5;
+        var navbarHeight = $('.chapter-options').outerHeight();
+
+        $(window).scroll(function(event){
+            didScroll = true;
+        });
+
+        setInterval(function() {
+            if (didScroll) {
+                hasScrolled();
+                didScroll = false;
+            }
+        }, 250);
+
+        function hasScrolled() {
+            var st = $(this).scrollTop();
+            
+            // Make sure they scroll more than delta
+            if(Math.abs(lastScrollTop - st) <= delta)
+                return;
+            
+            // If they scrolled down and are past the navbar, add class .nav-up.
+            // This is necessary so you never see what is "behind" the navbar.
+            if (st > lastScrollTop && st > navbarHeight){
+                // Scroll Down
+                $('.chapter-options').fadeOut();
+            } else {
+                // Scroll Up
+                if(st + $(window).height() < $(document).height()) {
+                    $('.chapter-options').fadeIn();
+                }
+            }
+            
+            lastScrollTop = st;
+        }
+    }
 })(jQuery);

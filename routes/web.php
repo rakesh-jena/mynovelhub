@@ -1,21 +1,19 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\OthersController;
-use App\Http\Controllers\GenreController;
-use App\Http\Controllers\TagController;
-use App\Http\Controllers\BookTranslatedController;
-use App\Http\Controllers\BookOriginalController;
-use App\Http\Controllers\ImageController;
-use App\Http\Controllers\WebpageController;
-use App\Http\Controllers\ChapterTranslated;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserController;
-use App\Http\Middleware\AdminAuthenticated;
+use App\Http\Controllers\BookOriginalController;
+use App\Http\Controllers\BookTranslatedController;
+use App\Http\Controllers\ChapterTranslated;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LibraryController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WebpageController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,11 +24,11 @@ use App\Http\Controllers\LibraryController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 /**
  * ------------------------------------------------------------------------
- * ADMIN URL 
+ * ADMIN URL
  * ------------------------------------------------------------------------
  * */
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -47,7 +45,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('admin/users', UserController::class);
 
     /**Extras */
-    Route::get('admin/others', [OthersController::class, 'index'])->name('others');
     Route::resource('admin/genre', GenreController::class);
     Route::resource('admin/tag', TagController::class);
 
@@ -69,7 +66,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 /**
  * ------------------------------------------------------------------------
- * AJAX URL 
+ * AJAX URL
  * ------------------------------------------------------------------------
  * */
 Route::middleware('verified')->group(function () {
@@ -99,13 +96,13 @@ Route::post('/search', [AjaxController::class, 'search']);
 
 /**
  * ------------------------------------------------------------------------
- * WEBPAGE URL 
+ * WEBPAGE URL
  * ------------------------------------------------------------------------
  * */
 Route::get('/', [WebpageController::class, 'homepage']);
 Route::get('/novel/{slug}/{id}', [WebpageController::class, 'book_info']);
-Route::match(['get','post'],'/novels', [WebpageController::class, 'all_novels']);
-Route::match(['get', 'post'],'genre/{id}/{slug}', [WebpageController::class, 'genre_books']);
+Route::match(['get', 'post'], '/novels', [WebpageController::class, 'all_novels']);
+Route::match(['get', 'post'], 'genre/{id}/{slug}', [WebpageController::class, 'genre_books']);
 Route::match(['get', 'post'], '/tag/{id}/{slug}', [WebpageController::class, 'novels_by_tag']);
 Route::get('/{book_slug}/{id}/{chapter_slug}', [WebpageController::class, 'chapter']);
 Route::post('/user_login', [AuthController::class, 'authenticate']);
@@ -122,9 +119,8 @@ Route::middleware('guest')->group(function () {
     Route::post('/reset-password', [AuthController::class, 'update_password'])->name('password.update');
 });
 
-
 /**Profile */
-Route::middleware('verified')->group(function () {    
+Route::middleware('verified')->group(function () {
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
     Route::get('profile/edit', [ProfileController::class, 'edit_profile']);
     Route::post('save-profile', [ProfileController::class, 'save_profile']);
@@ -142,7 +138,7 @@ Route::get('/email/verification-notification', [AuthController::class, 'email_re
 
 /**
  * ------------------------------------------------------------------------
- * Other URLs 
+ * Other URLs
  * ------------------------------------------------------------------------
  * */
 //Route::get('/py-add', [ChapterTranslated::class, 'store_py']);
@@ -154,6 +150,9 @@ Route::get('/privacy-policy', function () {
 });
 Route::get('/about', function () {
     return view('webpage/about');
+});
+Route::get('/contact-us', function () {
+    return view('webpage/contact');
 });
 Route::get('/terms-of-service', function () {
     return view('webpage/toc');

@@ -2,8 +2,13 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
+            <div class="modal-header">                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             <div class="modal-body">
-                <div class="auth-form-light text-left p-5">
+                <div class="auth-form-light text-left p-1">
                     <div class="brand-logo text-center">
                         <img alt="MyNovelHub Logo" src="{{ URL::asset('images/logo.png') }}">
                     </div>
@@ -35,7 +40,7 @@
                                 <i class="mdi mdi-facebook mr-2"></i> Facebook </button>
                         </div>
                         <div class="text-center mt-4 font-weight-light"> Don't have an account? <a href="{{ url('register') }}"
-                                class="text-primary" data-toggle="modal" data-target="#register_modal">Create</a>
+                                class="text-primary" data-dismiss="modal" data-toggle="modal" data-target="#register_modal">Create</a>
                         </div>
                     </form>
                 </div>

@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <form class="forms-sample" id="edit_review_form" action="{{ url('edit-review') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="id" value="{{ $review->id }}"
+                    <input type="hidden" name="id" value="{{ $review->id }}">
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                     <input type="hidden" name="book_id" value="{{ $book->id }}">
                     <input type="hidden" name="rating" class="rating" value="{{ $review->rating }}">

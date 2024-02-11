@@ -26,8 +26,6 @@
     <link href="{{ URL::asset('css/owl.theme.default.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css"/>
     
-    <script data-ad-client="ca-pub-6766914808334879" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RJ4FHE7C5"></script>
     <script>
@@ -53,6 +51,18 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T2LS7PK"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Page Loader Animation -->
+    <div class="sh-page-loader sh-table sh-page-loader-style-spinner" style="display: none;">
+        <div class="sh-table-cell">
+            <div id="loading-center-absolute">
+                <div class="object" id="object_one"></div>
+                <div class="object" id="object_two"></div>
+                <div class="object" id="object_three"></div>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Loader Animation -->
     <div class="webpage-container">
         <!-- Web Header -->
         @include('webpage.header')
@@ -69,10 +79,11 @@
 
         @include('webpage.footer')
     </div>
-    <a href="#" class="scroll-top"><i class="mdi mdi-arrow-up-bold-circle"></i></a>
+    <button class="scroll-top btn btn-icon btn-floating btn-dark btn-gradient-primary btn-rounded" style="display: none">
+        <i class="mdi mdi-arrow-up-bold"></i>
+    </button>
     @include('modals.login')
     @include('modals.register')
-    
     
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-migrate-3.3.2.min.js"
@@ -89,6 +100,11 @@
     <script src="{{ URL::asset('js/custom.js') }}"></script>
     <script>
         $(document).ready(function () {
+            $(".sh-page-loader").fadeOut(500);
+	        $("body").css('overflow-y', 'visible').css('overflow-x', 'hidden');
+            $(window).bind('onbeforeunload', function(e){
+                $('.sh-page-loader').fadeIn();
+            });
             $(window).scroll(function() {
                 if ($(this).scrollTop()) {
                     $('.scroll-top').fadeIn();
@@ -96,9 +112,11 @@
                     $('.scroll-top').fadeOut();
                 }
             });
+
             $(".scroll-top").click(function() {
                 $("html, body").animate({scrollTop: 0}, 1000);
             });
+
             $(".owl-carousel").owlCarousel({
                 margin:10,
                 loop:true,
@@ -117,6 +135,11 @@
                     }
                 }
             });
+
+            $('.nav-item .m-menu-btn').on("click", function() {
+                $('.mobile-menu').toggleClass('d-none');
+                $('.m-menu-btn i.mdi').toggleClass('mdi-menu mdi-close')
+            });            
         });
     </script>
 </body>

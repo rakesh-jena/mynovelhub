@@ -4,9 +4,8 @@
 @section('meta_description', 'Read many Chinese, Korean and Japanese light novels.')
 
 @section('content')
-<div class="profile-wrapper container-fluid mt-5 mb-5">
-    @include('webpage.profile_sidebar')
-    <div class="main-panel profile-panel">
+<div class="profile-wrapper container mt-md-5 mb-md-5 mt-2 mb-2">
+    <div class="profile-panel">
         <div class="profile-content-wrapper">
             <div class="card">
                 <div class="card-body">
@@ -23,7 +22,11 @@
                                     $chapter = App\Models\ChapterTranslation::where('book_id', $book->id)->where('chapter_no', 1)->select('id','chapter_no','slug')->first();
                                 }
                                 @endphp
+<<<<<<< HEAD
                                 <div class="library-item col-2">
+=======
+                                <div class="library-item col-6 col-sm-3 col-md-2">
+>>>>>>> 0d5fa8a9ad8559fc532c67c0035779098fd7dae2
                                     <div class="library-book-cover mb-2">
                                         <a href="{{ url($book->slug.'/'.$chapter->id.'/'.$chapter->slug) }}">
                                             <img alt="{{ $book->novel }}" src="{{ URL::asset('images/book-cover/150/'.$book->cover) }}">

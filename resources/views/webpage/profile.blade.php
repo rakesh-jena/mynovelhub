@@ -4,9 +4,8 @@
 @section('meta_description', 'Read many Chinese, Korean and Japanese light novels.')
 
 @section('content')
-<div class="profile-wrapper container-fluid mt-5 mb-5">
-    @include('webpage.profile_sidebar')
-    <div class="main-panel profile-panel">
+<div class="profile-wrapper container mt-md-5 mb-md-5 mt-2 mb-2">
+    <div class="profile-panel">
         <div class="profile-content-wrapper">
             <div class="card">
                 <div class="card-body p-0 pb-5">
@@ -17,7 +16,7 @@
                             </div>
                             <div class="user-avatar pl-5 pr-5">
                                 <img src="{{ url('images/user-avatar') }}/{{ $user_meta->avatar }}" alt="{{ $user_meta->avatar }}">
-                                <a href="{{ url('profile/edit') }}" class="btn btn-gradient-primary btn-sm float-right mt-5">
+                                <a href="{{ url('profile/edit') }}" class="btn btn-rounded btn-gradient-primary btn-sm float-right mt-5">
                                     Edit
                                 </a>
                             </div>
@@ -41,9 +40,6 @@
                             </div>
                             <div class="user-reads pl-5 pr-5"></div>
                             <div class="user-recent-activity pl-5 pr-5"></div>
-                            
-                            
-                            
                         </div>
                     </div>
                 </div>

@@ -2,8 +2,13 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
+            <div class="modal-header">                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             <div class="modal-body">
-                <div class="auth-form-light text-left p-5">
+                <div class="auth-form-light text-left p-1">
                     <div class="brand-logo text-center">
                         <img alt="MyNovelHub Logo" src="{{ URL::asset('images/logo.png') }}">
                     </div>
@@ -27,7 +32,7 @@
                         </div>
                         <div class="text-center mt-4 font-weight-light">
                             Already have an account? 
-                            <a href="{{ url('login') }}" class="text-primary">Login</a>
+                            <a href="{{ url('login') }}" data-dismiss="modal" data-toggle="modal" data-target="#login_modal" class="text-primary">Login</a>
                         </div>
                     </form>
                 </div>

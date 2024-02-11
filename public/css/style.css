@@ -2537,7 +2537,7 @@
 }
 
 html {
-    font-family: sans-serif;
+    /*font-family: sans-serif;*/
     font-size: 17px;
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
@@ -2559,13 +2559,13 @@ section {
 
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: 1rem;
+    /*font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    */font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
     color: #343a40;
     text-align: left;
-    background-color: #fbfbfb;
+    background-color: #fff;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -4715,6 +4715,13 @@ pre code {
         max-width: 25%;
     }
 
+    .col-xxl-3d5 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 28%;
+        flex: 0 0 28%;
+        max-width: 28%;
+    }
+
     .col-xxl-4 {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 33.33333%;
@@ -4748,6 +4755,13 @@ pre code {
         -ms-flex: 0 0 66.66667%;
         flex: 0 0 66.66667%;
         max-width: 66.66667%;
+    }
+
+    .col-xxl-8d5 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 72%;
+        flex: 0 0 72%;
+        max-width: 72%;
     }
 
     .col-xxl-9 {
@@ -7712,7 +7726,7 @@ input[type="button"].btn-block {
 
 .nav-link {
     display: block;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 2.5rem;
 }
 
 .nav-link:hover,
@@ -7727,17 +7741,19 @@ input[type="button"].btn-block {
 }
 
 .nav-tabs {
-    border-bottom: 1px solid #ebedf2;
+    box-shadow: 0px 5px 20px rgb(0 0 0 / 10%);
+    border-radius: 25px;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
 }
 
-.nav-tabs .nav-item {
-    margin-bottom: -1px;
+.nav-tabs .nav-item h4{
+    margin-bottom: 0;
 }
 
 .nav-tabs .nav-link {
-    border: 1px solid transparent;
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
 }
 
 .nav-tabs .nav-link:hover,
@@ -7753,9 +7769,9 @@ input[type="button"].btn-block {
 
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-    color: #343a40;
-    background-color: #ffffff;
-    border-color: #ebedf2 #ebedf2 #ffffff;
+    color: #fff;
+    border-radius: 25px;
+    background: linear-gradient(to right, #b446e7, #3908d0);
 }
 
 .nav-tabs .dropdown-menu {
@@ -7812,7 +7828,7 @@ input[type="button"].btn-block {
     align-items: center;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0.5rem 1rem;
 }
 
@@ -15277,8 +15293,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-    font-family: Cinzel Decorative;
-    font-weight: bold;
+    font-family: 'ubuntu-bold';
 }
 
 p {
@@ -18898,7 +18913,7 @@ dl li {
     vertical-align: middle;
     font-size: 0.875rem;
     line-height: 1;
-    white-space: nowrap;
+    white-space: normal;
 }
 
 .table th img,
@@ -19102,9 +19117,9 @@ dl li {
 }
 
 .navbar .navbar-brand-wrapper .navbar-brand.brand-logo-mini img {
-    width: calc(70px - 50px);
+    width: calc(70px - 15px);
     max-width: 100%;
-    height: 28px;
+    height: 48px;
     margin: auto;
 }
 
@@ -19122,9 +19137,12 @@ dl li {
 
 @media (max-width: 991px) {
     .navbar .navbar-menu-wrapper {
-        width: auto;
+        width: calc(100% - 75px);
         padding-left: 15px;
         padding-right: 15px;
+    }
+    .navbar .navbar-nav-right {
+        margin-left: auto;
     }
 }
 
@@ -19240,7 +19258,6 @@ dl li {
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link {
     color: inherit;
     font-size: 0.875rem;
-    margin-left: 1.5rem;
     margin-right: 1.5rem;
     height: 70px;
     display: -webkit-box;
@@ -19249,6 +19266,7 @@ dl li {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    text-align: left;
 }
 
 @media (max-width: 767px) {
@@ -19288,8 +19306,9 @@ dl li {
 
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item {
     margin-bottom: 0;
-    padding: 11px 13px;
+    padding: 5px 10px;
     cursor: pointer;
+    font-size: inherit;
 }
 
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item i {

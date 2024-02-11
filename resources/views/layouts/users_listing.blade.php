@@ -5,13 +5,11 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Striped Table</h4>
-                    <p class="card-description"> Add class <code>.table-striped</code>
-                    </p>
+                    <h4 class="card-title">Users</h4>
                     <table class="table table-striped">
                         <thead>
                             <tr>                                
-                                <th scope="col">ID</th>
+                                <th scope="col">#</th>
                                 <th scope="col">User</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Role</th>
@@ -19,11 +17,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $count = 0;?>
                             @foreach ($users as $user)
+                                <?php $count++;?>
                                 <tr>
-                                    <td>
-                                        {{ $user->id }}
-                                    </td>
+                                    <th>
+                                        {{ $count }}
+                                    </th>
                                     <td> {{ $user->name }} </td>
                                     <td>
                                         {{ $user->email }}

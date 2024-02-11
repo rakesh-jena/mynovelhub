@@ -1,4 +1,4 @@
-<div class="sidebar text-capitalize profile-sidebar">
+<div class="sidebar text-capitalize profile-sidebar d-none">
     <nav class="sidebar-offcanvas profile-sidebar" id="sidebar-profile">
         <ul class="nav">
             <li class="nav-item {{ Request::is('profile*') ? 'active' : '' }}">
